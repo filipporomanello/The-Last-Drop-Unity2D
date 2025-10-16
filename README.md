@@ -7,7 +7,7 @@ This project focuses on player movement, collisions, and simple UI systems.
 
 ## 🎯 Features
 - Top-down player movement  
-- Basic collision and scoring system  
+- Basic collision
 - Collectable packages  
 - Simple UI elements  
 
