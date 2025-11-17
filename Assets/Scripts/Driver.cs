@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
+/// <summary>
+/// Controls player movement and speed based on keyboard input and collisions.
+/// </summary>
 public class Driver : MonoBehaviour
 {
     [SerializeField] float currentSpeed = 7f;
@@ -10,11 +13,18 @@ public class Driver : MonoBehaviour
     [SerializeField] float regularSpeed = 7f;
     [SerializeField] TMP_Text boostText;
 
+    /// <summary>
+    /// Initializes the driver by hiding the boost text.
+    /// </summary>
     void Start()
     {
         boostText.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Handles trigger collisions with boost pickups.
+    /// </summary>
+    /// <param name="collision">The collider that triggered the collision.</param>
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boost"))
@@ -25,6 +35,10 @@ public class Driver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles collisions with world objects to reset speed.
+    /// </summary>
+    /// <param name="collision">The collision data.</param>
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("World Collision"))
@@ -34,6 +48,9 @@ public class Driver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles player input and updates position and rotation each frame.
+    /// </summary>
     void Update()
     {
         float move = 0f;
