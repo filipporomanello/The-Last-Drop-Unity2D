@@ -1,9 +1,6 @@
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEngine.Rendering;
 
 public class Driver : MonoBehaviour
 {
@@ -27,6 +24,7 @@ public class Driver : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("World Collision"))
@@ -34,7 +32,8 @@ public class Driver : MonoBehaviour
             currentSpeed = regularSpeed;
             boostText.gameObject.SetActive(false);
         }
-    }  
+    }
+
     void Update()
     {
         float move = 0f;
@@ -44,7 +43,6 @@ public class Driver : MonoBehaviour
         {
             move = 1f;
         }
-
         else if (Keyboard.current.sKey.isPressed)
         {
             move = -1f;
@@ -54,7 +52,6 @@ public class Driver : MonoBehaviour
         {
             steer = 1f;
         }
-
         else if (Keyboard.current.dKey.isPressed)
         {
             steer = -1f;

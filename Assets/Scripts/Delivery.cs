@@ -1,8 +1,10 @@
 using UnityEngine;
+
 public class Delivery : MonoBehaviour
 {
     bool hasPackage;
     [SerializeField] float destroyDelay = 0.2f;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Package") && !hasPackage)
