@@ -1,10 +1,10 @@
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-using UnityEngine.Rendering;
 
+/// <summary>
+/// Controls player movement and speed based on keyboard input and collisions.
+/// </summary>
 public class Driver : MonoBehaviour
 {
     [SerializeField] float currentSpeed = 7f;
@@ -13,11 +13,18 @@ public class Driver : MonoBehaviour
     [SerializeField] float regularSpeed = 7f;
     [SerializeField] TMP_Text boostText;
 
+    /// <summary>
+    /// Initializes the driver by hiding the boost text.
+    /// </summary>
     void Start()
     {
         boostText.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Handles trigger collisions with boost pickups.
+    /// </summary>
+    /// <param name="collision">The collider that triggered the collision.</param>
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Boost"))
@@ -27,6 +34,11 @@ public class Driver : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    /// <summary>
+    /// Handles collisions with world objects to reset speed.
+    /// </summary>
+    /// <param name="collision">The collision data.</param>
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("World Collision"))
@@ -34,7 +46,11 @@ public class Driver : MonoBehaviour
             currentSpeed = regularSpeed;
             boostText.gameObject.SetActive(false);
         }
-    }  
+    }
+
+    /// <summary>
+    /// Handles player input and updates position and rotation each frame.
+    /// </summary>
     void Update()
     {
         float move = 0f;
@@ -44,7 +60,6 @@ public class Driver : MonoBehaviour
         {
             move = 1f;
         }
-
         else if (Keyboard.current.sKey.isPressed)
         {
             move = -1f;
@@ -54,7 +69,6 @@ public class Driver : MonoBehaviour
         {
             steer = 1f;
         }
-
         else if (Keyboard.current.dKey.isPressed)
         {
             steer = -1f;
